@@ -1,14 +1,12 @@
 export default class Task {
   #title;
   #description;
-  #startDateAndTime;
-  #endDateAndTime;
+  #dueDateAndTime;
   #isCompleted;
-  constructor(_title, _description, _startDateAndTime, _endDateAndTime) {
+  constructor(_title, _description, _dueDateAndTime) {
     this.title = _title;
     this.description = _description;
-    this.startDateAndTime = _startDateAndTime;
-    this.endDateAndTime = _endDateAndTime;
+    this.dueDateAndTime = _dueDateAndTime;
     this.isCompleted = false;
   }
 
@@ -28,22 +26,14 @@ export default class Task {
     return this.#description;
   }
   
-  set startDateAndTime(_startDateAndTime) {
-    this.#startDateAndTime = _startDateAndTime;
+  set dueDateAndTime(_dueDateAndTime) {
+    this.#dueDateAndTime = _dueDateAndTime;
   }
 
-  get startDateAndTime() {
-    return this.#startDateAndTime;
+  get dueDateAndTime() {
+    return this.#dueDateAndTime;
   }
-
-  set endDateAndTime(_endDateAndTime) {
-    this.#endDateAndTime = _endDateAndTime;
-  }
-
-  get endDateAndTime() {
-    return this.#endDateAndTime;
-  }
-
+  
   set isCompleted(_isCompleted) {
     this.#isCompleted = _isCompleted;
   }
