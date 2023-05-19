@@ -1,6 +1,6 @@
 import Project from "./Logics/Project";
 import Task from "./Logics/Task";
-
+import LocalStorage from "./Logics/LocalStorage";
 
 var project1 = new Project("Odin", "red")
 project1.tasks = [1,1,2];
@@ -36,5 +36,8 @@ console.log(project1.tasks);
 
 project1.removeTask(task0.title, task0.dueDateAndTime);
 console.log(project1.tasks);
+
+var storage = new LocalStorage(project1);
+console.log(storage.projects);
 
 document.body.appendChild(contentDiv);
