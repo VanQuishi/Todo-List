@@ -34,4 +34,7 @@ console.log(task1.dueDateAndTime, task0.isCompleted);
 project1.addTask(task0);
 console.log(project1.tasks);
 
+project1.removeTask(task0.title, task0.dueDateAndTime);
+console.log(project1.tasks);
+
 document.body.appendChild(contentDiv);

@@ -37,6 +37,15 @@ export default class Project {
     this.tasks.push(_task);
     this.tasks = sortTasksAsc(this.tasks);
   }
+
+  removeTask = (_taskTitle, _taskDueDate) => {
+    for (let i = 0; i < this.tasks.length; i++) {
+      if (this.tasks[i].title == _taskTitle && this.tasks[i].dueDateAndTime == _taskDueDate) {
+        this.tasks.splice(i, 1);
+        return;
+      }
+    }
+  }
 }
 
 function sortTasksAsc(_tasks) {
