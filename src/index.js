@@ -2,7 +2,7 @@ import Project from "./Logics/Project";
 import Task from "./Logics/Task";
 import LocalStorage from "./Logics/LocalStorage";
 
-var project1 = new Project("Odin", "red")
+var project1 = new Project("Odin1", "red")
 project1.tasks = [1,1,2];
 
 console.log(project1.title);
@@ -37,7 +37,17 @@ console.log(project1.tasks);
 project1.removeTask(task0.title, task0.dueDateAndTime);
 console.log(project1.tasks);
 
-var storage = new LocalStorage(project1);
+var project2 = new Project("Odin2", "blue");
+
+var projects = [];
+
+var storage = new LocalStorage(projects);
+console.log(storage.projects);
+storage.removeProject("Odin3");
+
+var project3 = new Project("Odin3", "yellow");
+storage.addProject(project3);
+storage.removeProject("Odin3");
 console.log(storage.projects);
 
 document.body.appendChild(contentDiv);

@@ -15,7 +15,23 @@ export default class LocalStorage {
     return this.#projects;
   }
 
+  addProject(_project) {
+    //add name checker if there is duplicate in name (don't add if yes)
+    this.projects.push(_project);
+  }
+
+  removeProject(_projectTitle) {
+    for (let i = 0; i < this.projects.length; i++) {
+      if (this.projects[i].title == _projectTitle) {
+        console.log("reached removeProject");
+        this.projects.splice(i, 1);
+        return;
+      }
+    }
+  }
+
   saveProjects() {
+    console.log("called saveProjects()");
     localStorage.setItem('myLocalProjects', JSON.stringify(this.projects));
   }
 
