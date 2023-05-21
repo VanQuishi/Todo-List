@@ -1,6 +1,8 @@
 import Project from "./Logics/Project";
 import Task from "./Logics/Task";
 import LocalStorage from "./Logics/LocalStorage";
+import './style.css';
+import layout from "./UI/layout";
 
 var project1 = new Project("Odin1", "red")
 project1.tasks = [1,1,2];
@@ -50,4 +52,5 @@ storage.addProject(project3);
 storage.removeProject("Odin3");
 console.log(storage.projects);
 
+document.body.appendChild(layout);
 document.body.appendChild(contentDiv);
