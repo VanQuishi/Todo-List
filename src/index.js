@@ -51,6 +51,9 @@ var project3 = new Project("Odin3", "yellow");
 storage.addProject(project3);
 storage.removeProject("Odin3");
 console.log(storage.projects);
+/* End of logic test */
 
-document.body.appendChild(layout);
+
+
+contentDiv.appendChild(layout);
 document.body.appendChild(contentDiv);
