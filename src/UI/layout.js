@@ -1,3 +1,5 @@
+import githubLogo from "../assets/github-mark/github-mark-white.svg";
+
 const layout = document.createElement('div');
 
 const header = document.createElement('div');
@@ -29,6 +31,12 @@ main.appendChild(nav);
 
 const footer = document.createElement('div');
 footer.id = "footer";
+const creditWrapper = document.createElement('p');
+creditWrapper.textContent = "Made by Nin"
+const githubWrapper = document.createElement('img');
+githubWrapper.src = githubLogo;
+footer.appendChild(creditWrapper);
+footer.appendChild(githubWrapper);
 
 layout.appendChild(header);
 layout.appendChild(main);
