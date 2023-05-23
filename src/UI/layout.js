@@ -4,6 +4,11 @@ const layout = document.createElement('div');
 
 const header = document.createElement('div');
 header.id = "header";
+const logoWrapper = document.createElement('div');
+const title = document.createElement('h1');
+title.textContent = "Planner";
+logoWrapper.appendChild(title);
+header.appendChild(logoWrapper);
 
 const main = document.createElement('div');
 main.id = "main";
@@ -14,13 +19,25 @@ nav.id = "nav";
 const navItems = document.createElement('ul');
 
 const todayTab = document.createElement('li');
-todayTab.textContent = "Today";
+const todayButton = document.createElement('button');
+todayButton.textContent = "Today";
+todayTab.appendChild(todayButton);
 
 const weekTab = document.createElement('li');
-weekTab.textContent = "Week";
+const weekButton = document.createElement('button');
+weekButton.textContent = "Week";
+weekTab.appendChild(weekButton);
 
 const projectsTab = document.createElement('li');
-projectsTab.textContent = "Projects";
+const projectButton = document.createElement('button');
+projectButton.textContent = "Projects";
+projectButton.id = "projectButton";
+projectsTab.appendChild(projectButton);
+const newProjectButton = document.createElement('button');
+newProjectButton.textContent = "+";
+newProjectButton.id = "newProjectButton";
+projectsTab.appendChild(newProjectButton);
+
 
 navItems.appendChild(todayTab);
 navItems.appendChild(weekTab);
