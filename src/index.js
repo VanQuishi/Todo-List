@@ -3,6 +3,7 @@ import Task from "./Logics/Task";
 import LocalStorage from "./Logics/LocalStorage";
 import './style.css';
 import layout from "./UI/layout";
+import ProjectView from "./UI/ProjectView";
 
 var project1 = new Project("Odin1", "red")
 project1.tasks = [1,1,2];
@@ -53,7 +54,8 @@ storage.removeProject("Odin3");
 console.log(storage.projects);
 /* End of logic test */
 
-
-
 contentDiv.appendChild(layout);
 document.body.appendChild(contentDiv);
+
+const view = document.getElementById('view');
+view.appendChild(ProjectView);

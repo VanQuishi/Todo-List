@@ -2,6 +2,8 @@ import githubLogo from "../assets/github-mark/github-mark-white.svg";
 
 const layout = document.createElement('div');
 
+
+/* Header section */
 const header = document.createElement('div');
 header.id = "header";
 const logoWrapper = document.createElement('div');
@@ -10,6 +12,8 @@ title.textContent = "Planner";
 logoWrapper.appendChild(title);
 header.appendChild(logoWrapper);
 
+
+/* Main section */
 const main = document.createElement('div');
 main.id = "main";
 
@@ -46,6 +50,15 @@ navItems.appendChild(projectsTab);
 nav.appendChild(navItems);
 main.appendChild(nav);
 
+const viewWrapper = document.createElement('div');
+const view = document.createElement('div');
+view.id = 'view';
+
+viewWrapper.appendChild(view);
+main.appendChild(viewWrapper);
+
+
+/* Footer section */
 const footer = document.createElement('div');
 footer.id = "footer";
 const creditWrapper = document.createElement('p');
