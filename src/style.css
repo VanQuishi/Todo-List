@@ -12,7 +12,7 @@ body{
   color: white;
 }
 
-h1, h2, h3{
+h1, h2, h3, ul{
   padding: 0;
   margin: 0;
 }
@@ -60,7 +60,7 @@ h1, h2, h3{
   width: 100%;
   text-align: left;
   border: none;
-  padding: 10px 20px 10px 20px;
+  padding: 15px 20px 15px 20px;
 }
 #nav li:last-child{
   display: grid;
@@ -81,11 +81,27 @@ h1, h2, h3{
 
 #view{
   margin: 20px auto;
-  width: 80%;
+  width: 70%;
+  color: black;
 }
 
 .projectTitleButton{
   width: 100%;
+  padding: 15px 20px 15px 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.taskItem{
+  display: grid;
+  grid-template: auto / 1rem 2fr 1fr 1fr 1fr;
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 10px 20px 10px 20px;
+}
+
+.taskItemCheckbox{
+  margin: 0;
 }
 
 #footer{
