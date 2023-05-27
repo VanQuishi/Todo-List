@@ -90,6 +90,7 @@ h1, h2, h3, ul{
   padding: 15px 20px 15px 20px;
   font-weight: bold;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 
 .taskItem{
@@ -102,6 +103,11 @@ h1, h2, h3, ul{
 
 .taskItemCheckbox{
   margin: 0;
+}
+
+.completedTask{
+  text-decoration: line-through;
+  opacity: 0.5;
 }
 
 #footer{

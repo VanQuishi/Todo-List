@@ -8,6 +8,8 @@
 
 const ProjectView = document.createElement('div');
 
+const projectWrapper = document.createElement('div');
+
 const projectTitleButton = document.createElement('button');
 projectTitleButton.className = 'projectTitleButton';
 projectTitleButton.style.backgroundColor = "yellow";
@@ -15,6 +17,7 @@ projectTitleButton.textContent = "Home";
 
 const taskListWrapper = document.createElement('div');
 taskListWrapper.className = 'taskListWrapper';
+taskListWrapper.id = 'HometaskListWrapper';
 const taskList = document.createElement('ul');
 
 let taskItem0 = document.createElement('li');
@@ -44,6 +47,7 @@ taskItem0.appendChild(taskDeleteButton0);
 
 let taskItem1 = document.createElement('li');
 taskItem1.className = "taskItem";
+taskItem1.classList.add("completedTask");
 
 let checkbox1 = document.createElement('input');
 checkbox1.type = "checkbox";
@@ -71,6 +75,29 @@ taskList.appendChild(taskItem0);
 taskList.appendChild(taskItem1);
 taskListWrapper.appendChild(taskList);
 
-ProjectView.appendChild(projectTitleButton);
-ProjectView.appendChild(taskListWrapper);
+const projectWrapper2 = document.createElement('div');
+const projectTitleButton2 = document.createElement('button');
+projectTitleButton2.className = 'projectTitleButton';
+projectTitleButton2.style.backgroundColor = "yellow";
+projectTitleButton2.textContent = "Home";
+
+projectWrapper.appendChild(projectTitleButton);
+projectWrapper.appendChild(taskListWrapper);
+ProjectView.appendChild(projectWrapper);
+
+projectWrapper2.appendChild(projectTitleButton2);
+ProjectView.appendChild(projectWrapper2);
+
+//function to hide/show taskList
+projectTitleButton.onclick = () => {
+    let projectTitle = projectTitleButton.textContent;
+    let list = document.getElementById(projectTitle + 'taskListWrapper');
+    console.log(list.style.display);
+    if (list.style.display != 'none') {
+        list.style.display = 'none';
+        return;
+    }
+    list.style.display = 'block';
+    return;
+}
 export default ProjectView;
