@@ -58,4 +58,26 @@ contentDiv.appendChild(layout);
 document.body.appendChild(contentDiv);
 
 const view = document.getElementById('view');
-view.appendChild(ProjectView);
+let projectView1 = new ProjectView(project1.title, project1.color, project1.tasks);
+let projectView2 = new ProjectView(project1.title, project1.color, project1.tasks);
+console.log(projectView1);
+view.appendChild(projectView1.htmlDisplay);
+view.appendChild(projectView2.htmlDisplay);
+
+//function to hide/show taskList
+function toggleList() {
+  let list = document.getElementById(`${this.textContent}` + 'taskListWrapper');
+  console.log(list);
+  if (list.style.display != 'none') {
+      list.style.display = 'none';
+      return;
+  }
+  list.style.display = 'block';
+  return;
+}
+
+let projectTitleButtons = document.getElementsByClassName('projectTitleButton');
+
+for (var i = 0; i < projectTitleButtons.length; i++) {
+  projectTitleButtons[i].addEventListener('click', toggleList);
+}
