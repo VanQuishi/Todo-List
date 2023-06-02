@@ -108,6 +108,9 @@ h1, h2, h3, ul{
   padding: 10px 20px 10px 20px;
   align-items: center;
 }
+.taskItemToday{
+  grid-template: auto / 1rem 2fr 1fr 1fr;
+}
 
 .taskItemCheckbox{
   margin: 0;
@@ -116,6 +119,11 @@ h1, h2, h3, ul{
 .completedTask{
   text-decoration: line-through;
   opacity: 0.5;
+}
+
+.todayTitle{
+  display: flex;
+  justify-content: space-between;
 }
 
 #footer{
