@@ -26,7 +26,7 @@ dueDate = new Date("20 May 2023 5:00:00");
 var task2 = new Task("Planning logic 2 ", "Write down things", dueDate)  //Month is May but we're passing 4 because counter starting at 0 - Jan
 console.log(task2.dueDateAndTime, task2.isCompleted);
 
-dueDate = new Date("25 May 2023 5:00:00");
+dueDate = new Date("8 June 2023 5:00:00");
 var task3 = new Task("Planning logic 3", "Write down things", dueDate)  //Month is May but we're passing 4 because counter starting at 0 - Jan
 console.log(task3.dueDateAndTime, task3.isCompleted);
 
@@ -45,7 +45,7 @@ console.log(project1.tasks);
 
 var project2 = new Project("Odin2", "#a2d2ff");
 
-var dueDate = new Date("2 June 2023 5:00:00");
+var dueDate = new Date("8 June 2023 5:00:00");
 var task4 = new Task("Planning logic 4", "Write down things", dueDate)  //Month is May but we're passing 4 because counter starting at 0 - Jan
 console.log(task4.dueDateAndTime, task4.isCompleted);
 
@@ -53,7 +53,7 @@ dueDate = new Date("20 May 2023 5:00:00");
 var task5 = new Task("Planning logic 2 ", "Write down things", dueDate)  //Month is May but we're passing 4 because counter starting at 0 - Jan
 console.log(task5.dueDateAndTime, task5.isCompleted);
 
-dueDate = new Date("25 May 2023 5:00:00");
+dueDate = new Date("8 June 2023 5:00:00");
 var task6 = new Task("Planning logic 3", "Write down things", dueDate)  //Month is May but we're passing 4 because counter starting at 0 - Jan
 console.log(task6.dueDateAndTime, task6.isCompleted);
 
@@ -121,4 +121,16 @@ let projectTitleButtons = document.getElementsByClassName('projectTitleButton');
 
 for (var i = 0; i < projectTitleButtons.length; i++) {
   projectTitleButtons[i].addEventListener('click', toggleList);
+}
+
+//function to complete a task
+function completeTask() {
+  let taskID = this.id;
+  console.log("crossed out", taskID);
+}
+
+let taskItemCheckboxes = document.getElementsByClassName('taskItemCheckbox');
+
+for (var i = 0; i < taskItemCheckboxes.length; i++) {
+  taskItemCheckboxes[i].addEventListener('click', completeTask);
 }

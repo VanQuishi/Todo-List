@@ -5,6 +5,8 @@
     + User can expand/collapse any of the Projects' dropdowns
     */
 // Each task comes along with a checkbox, edit icon, delete icon
+import editIcon from "../assets/edit_icon.svg";
+import deleteIcon from "../assets/delete_icon.svg";
 
 export default class ProjectView {
     htmlDisplay;
@@ -35,9 +37,13 @@ export default class ProjectView {
                 <input type="checkbox" class="taskItemCheckbox">
                 <div>${task.title}</div>
                 <div>${dueDate}</div>
-                <div>Edit</div>
-                <div>Delete</div>
-            </li>
+                <div>
+                    <img src="${editIcon}">
+                </div>
+                <div>
+                    <img src="${deleteIcon}">
+                </div>
+                </li>
         `
 
         return taskItemHTML;

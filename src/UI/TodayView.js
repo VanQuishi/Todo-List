@@ -1,3 +1,6 @@
+import editIcon from "../assets/edit_icon.svg";
+import deleteIcon from "../assets/delete_icon.svg";
+
 export default class TodayView {
   htmlDisplay;
   constructor(todayDate, todayList) {
@@ -6,14 +9,16 @@ export default class TodayView {
     todayWrapper.className = 'viewChild';
 
     let taskItems = ""
-    todayList.forEach(item => {
-      taskItems += this.createTaskItem(item[0], item[1]);
+    let i = 0;
+    todayList.forEach(item => {     
+      taskItems += this.createTaskItem(item[0], item[1], i);
+      i++;
     });
 
     todayWrapper.innerHTML += `
       <div class="todayTitle">
-        <div>Due Today</div>
-        <div>${todayDate}</div>
+        <h2>Due Today</h2>
+        <h2>${todayDate}</h2>
       </div>
       <div class="taskListWrapper">
           <ul class="tasksList">${taskItems}</ul>
@@ -23,13 +28,17 @@ export default class TodayView {
     this.htmlDisplay = todayWrapper;
   }
 
-  createTaskItem = (task, projectColor) => {
+  createTaskItem = (task, projectColor, taskID) => {
     let taskItemHTML = `
         <li class="taskItem taskItemToday" style="background-color:${projectColor}">
-            <input type="checkbox" class="taskItemCheckbox">
+            <input type="checkbox" class="taskItemCheckbox" id="${taskID}">
             <div>${task.title}</div>
-            <div>Edit</div>
-            <div>Delete</div>
+            <div>
+              <img src="${editIcon}">
+            </div>
+            <div>
+              <img src="${deleteIcon}">
+            </div>
         </li>
     `
 

@@ -1,4 +1,5 @@
 import githubLogo from "../assets/github-mark/github-mark-white.svg";
+import addIcon from "../assets/add_icon.svg";
 
 const layout = document.createElement('div');
 
@@ -38,7 +39,10 @@ projectButton.textContent = "Projects";
 projectButton.id = "projectButton";
 projectsTab.appendChild(projectButton);
 const newProjectButton = document.createElement('button');
-newProjectButton.textContent = "+";
+const addIconWrapper = document.createElement('img');
+addIconWrapper.src = addIcon;
+addIconWrapper.style.width = "1.2rem";
+newProjectButton.appendChild(addIconWrapper);
 newProjectButton.id = "newProjectButton";
 projectsTab.appendChild(newProjectButton);
 
