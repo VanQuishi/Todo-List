@@ -1,18 +1,19 @@
 import Project from "./Project";
+import Task from "./Task";
 
 export default class LocalStorage {
-  #projects;
+  projects;
   constructor(_projects) {
     this.projects = _projects;
-    this.saveProjects();
+    this.loadProjects();
   }
 
   set projects(_projects) {
-    this.#projects = _projects;
+    this.projects = _projects;
   }
 
   get projects() {
-    return this.#projects;
+    return this.projects;
   }
 
   addProject(_project) {
@@ -39,19 +40,24 @@ export default class LocalStorage {
   }
 
   saveProjects() {
-    console.log("called saveProjects()");
     localStorage.setItem('myLocalProjects', JSON.stringify(this.projects));
+    console.log("after save", localStorage.getItem('myLocalProjects'));
   }
 
   loadProjects() {
+    console.log("called loadProjects");
     if (localStorage.getItem('myLocalProjects')) {
       var existingProjects = JSON.parse(localStorage.getItem('myLocalProjects'));
       console.log({existingProjects});
 
-      existingProjects.forEach(item => {
-        let project = new Project(item['title'], item['color']);
-        this.projects.push(project);
+      var _projects = [];
+      existingProjects.forEach(function(item) {
+        console.log(item['title']);
+        let project = new Project(item['title'], item['color'], item['tasks']);
+        _projects.push(project);
       });
+
+      this.projects = _projects;
     }
   }
 }

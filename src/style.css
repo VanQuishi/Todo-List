@@ -109,6 +109,10 @@ h1, h2, h3, ul{
   padding: 10px 20px 10px 20px;
   align-items: center;
 }
+.taskItemCross{
+  text-decoration: line-through;
+  opacity: 50%;
+}
 .taskItemToday{
   grid-template: auto / 1rem 1fr 4rem 1rem;
   border: 1px solid black;
@@ -116,6 +120,7 @@ h1, h2, h3, ul{
 }
 .taskItemToday img, .taskItem img{
   width: 1.2rem;
+  cursor: pointer;
 }
 
 .taskItemCheckbox{

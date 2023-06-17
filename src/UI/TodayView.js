@@ -9,10 +9,8 @@ export default class TodayView {
     todayWrapper.className = 'viewChild';
 
     let taskItems = ""
-    let i = 0;
     todayList.forEach(item => {     
-      taskItems += this.createTaskItem(item[0], item[1], i);
-      i++;
+      taskItems += this.createTaskItem(item[0], item[1], item[2]);
     });
 
     todayWrapper.innerHTML += `
@@ -28,10 +26,12 @@ export default class TodayView {
     this.htmlDisplay = todayWrapper;
   }
 
-  createTaskItem = (task, projectColor, taskID) => {
-    let taskItemHTML = `
-        <li class="taskItem taskItemToday" style="background-color:${projectColor}">
-            <input type="checkbox" class="taskItemCheckbox" id="${taskID}">
+  createTaskItem = (task, projectTitle, projectColor) => {
+    let taskItemHTML = "";
+    if (task.isCompleted) {
+      taskItemHTML = `
+        <li class="taskItem ${projectTitle} taskItemToday taskItemCross" style="background-color:${projectColor}">
+            <input type="checkbox" class="taskItemCheckbox" checked>
             <div>${task.title}</div>
             <div>
               <img src="${editIcon}">
@@ -40,8 +40,23 @@ export default class TodayView {
               <img src="${deleteIcon}">
             </div>
         </li>
-    `
-
+      `
+    }
+    else {
+      taskItemHTML = `
+        <li class="taskItem ${projectTitle} taskItemToday" style="background-color:${projectColor}">
+            <input type="checkbox" class="taskItemCheckbox">
+            <div>${task.title}</div>
+            <div>
+              <img src="${editIcon}">
+            </div>
+            <div>
+              <img src="${deleteIcon}">
+            </div>
+        </li>
+      `
+    }
+    
     return taskItemHTML;
   }
 }

@@ -1,36 +1,36 @@
 export default class Project {
-  #title;
-  #color;
-  #tasks;
-  constructor(_title, _color) {
+  title;
+  color;
+  tasks;
+  constructor(_title, _color, _tasks) {
     this.title = _title;
     this.color = _color;
-    this.tasks = [];
+    this.tasks = _tasks;
   }
 
   set title(_title) {
     console.log("called setter");
-    this.#title = _title;
+    this.title = _title;
   }
 
   get title() {
-    return this.#title;
+    return this.title;
   }
 
   set color(_color) {
-    this.#color = _color;
+    this.color = _color;
   }
 
   get color() {
-    return this.#color;
+    return this.color;
   }
 
   set tasks(_tasks) {
-    this.#tasks = sortTasksAsc(_tasks);
+    this.tasks = sortTasksAsc(_tasks);
   }
 
   get tasks() {
-    return this.#tasks;
+    return this.tasks;
   }
 
   addTask = (_task) => {

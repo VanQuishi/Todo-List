@@ -15,9 +15,9 @@ export default class ProjectView {
         let projectWrapper = document.createElement('div');
         projectWrapper.className = 'viewChild';
 
-        let taskItems = ""
+        let taskItems = "";
         projectTasks.forEach(task => {
-            taskItems += this.createTaskItem(task);
+            taskItems += this.createTaskItem(task, projectTitle);
         });
 
         projectWrapper.innerHTML += `
@@ -30,10 +30,26 @@ export default class ProjectView {
         this.htmlDisplay = projectWrapper;
     }
 
-    createTaskItem = (task) => {
-        let dueDate = task.dueDateAndTime.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"});
-        let taskItemHTML = `
-            <li class="taskItem">
+    createTaskItem = (task, projectTitle) => {
+        let dueDate = new Date(task.dueDateAndTime).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"});
+        let taskItemHTML = "";
+        if (task.isCompleted) {
+            taskItemHTML = `
+            <li class="taskItem ${projectTitle} taskItemCross">
+                <input type="checkbox" class="taskItemCheckbox" checked>
+                <div>${task.title}</div>
+                <div>${dueDate}</div>
+                <div>
+                    <img src="${editIcon}">
+                </div>
+                <div>
+                    <img src="${deleteIcon}">
+                </div>
+                </li>
+            `
+        } else {
+            taskItemHTML = `
+            <li class="taskItem ${projectTitle}">
                 <input type="checkbox" class="taskItemCheckbox">
                 <div>${task.title}</div>
                 <div>${dueDate}</div>
@@ -44,7 +60,9 @@ export default class ProjectView {
                     <img src="${deleteIcon}">
                 </div>
                 </li>
-        `
+            `
+        }
+        
 
         return taskItemHTML;
     }
