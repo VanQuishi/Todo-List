@@ -5,6 +5,7 @@ import './style.css';
 import layout from "./UI/layout";
 import ProjectView from "./UI/ProjectView";
 import TodayView from "./UI/TodayView";
+import WeekView from "./UI/WeekView";
 
 const todayDateObj = new Date();
 
@@ -106,14 +107,50 @@ document.body.appendChild(contentDiv);
 
 const view = document.getElementById('view');
 
+// Project View
 for (let i = 0; i < storage.projects.length; i++) {
   var projectView = new ProjectView(storage.projects[i].title, storage.projects[i].color, storage.projects[i].tasks);
   view.appendChild(projectView.htmlDisplay);
 }
 
+//Today View
 let todayView = new TodayView(todayDateObj.toLocaleDateString(), todayTasks);
 console.log(todayView);
 view.appendChild(todayView.htmlDisplay);
+
+//Week View
+function getMondayOfCurrentWeek() {
+  const diff = todayDateObj.getDate() - todayDateObj.getDay() + (todayDateObj.getDay() === 0 ? -6 : 1);
+  return todayDateObj.setDate(diff), todayDateObj;
+}
+
+function getSundayOfCurrentWeek() {
+  const diff = todayDateObj.getDate() - todayDateObj.getDay() + (todayDateObj.getDay() === 0 ? 0 : 7);
+  return todayDateObj.setDate(diff), todayDateObj;
+}
+
+console.log("monday", getMondayOfCurrentWeek()); 
+console.log("sunday", getSundayOfCurrentWeek()); 
+
+var weekTasks = []
+
+for (var i = 0; i < storage.projects.length; i++) {
+  for (var j = 0; j < storage.projects[i].tasks.length; j++) {
+    console.log(storage.projects[i].tasks[j].dueDateAndTime);
+    let taskDueDate = new Date(`"${storage.projects[i].tasks[j].dueDateAndTime}"`);
+    console.log(taskDueDate.toString())
+    if (taskDueDate <= getSundayOfCurrentWeek() && taskDueDate >= getMondayOfCurrentWeek()) {
+      console.log("in between the week");
+      weekTasks.push([storage.projects[i].tasks[j], storage.projects[i].title, storage.projects[i].color]);
+    }
+  }
+
+  console.log(weekTasks);
+}
+
+let weekView = new WeekView(getMondayOfCurrentWeek().toLocaleDateString(), getSundayOfCurrentWeek().toLocaleDateString(), weekTasks);
+console.log(weekView);
+view.appendChild(weekView.htmlDisplay);
 
 //function to hide/show taskList
 function toggleList() {
