@@ -105,7 +105,18 @@ for (let i = 0; i < storage.projects.length; i++) {
 contentDiv.appendChild(layout);
 document.body.appendChild(contentDiv);
 
+const colorSelectionToggle = document.getElementById('colorSelectionToggle');
 const view = document.getElementById('view');
+
+colorSelectionToggle.addEventListener("click", function()
+{
+  let colorSelectionWrapper = document.getElementById("colorSelectionWrapper");
+  if (colorSelectionWrapper.style.display == "flex") {
+    colorSelectionWrapper.style.display = "none";
+  } else {
+    colorSelectionWrapper.style.display = "flex";
+  }
+})
 
 // Project View
 for (let i = 0; i < storage.projects.length; i++) {

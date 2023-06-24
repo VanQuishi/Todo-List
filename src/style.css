@@ -57,28 +57,85 @@ h1, h2, h3, ul{
   background-color: #ccc;
   cursor: pointer;
 }
-#nav button{
+#nav ul>li>button{
   width: 100%;
   text-align: left;
   border: none;
   padding: 15px 20px 15px 20px;
   font-size: 1rem;
 }
-#nav li:last-child{
+.projectBtnWrapper{
   display: grid;
   grid-template: 1fr / 4fr 1fr;
 }
-#nav button:hover{
+#nav ul>li>button:hover{
   background-color: #ccc;
   cursor: pointer;
 }
-#nav button:active{
+#nav ul>li>button:active{
   background-color: #ccc;
   cursor: pointer;
 }
 #nav #newProjectButton{
   border-left: 1px solid #ccc;
   text-align: center;
+}
+.projectSwatchesWrapper{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+#projectInput{
+  width: 100%;
+  padding: 10px 0 10px 0;
+  border: 1px;
+  text-align: center;
+}
+.colorBtn{
+  border: 1px black solid;
+  width: 10px;
+  height: 10px;
+  border-radius: 70%;
+  padding: 10px;
+}
+.colorBtn:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+}
+#colorSelectionToggle{
+  background-color: #ffafcc;
+  border: 1px solid #ffafcc;
+}
+#colorSelectionWrapper{
+  display: none;
+  gap: 10px;
+  position: absolute;
+  margin-top: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+}
+#colorSelectionWrapper button:nth-child(1){
+  background-color: #ffafcc;
+  border: 1px solid #ffafcc;
+}
+#colorSelectionWrapper button:nth-child(2){
+  background-color: #f8da5b;
+  border: 1px solid #f8da5b;
+}
+#colorSelectionWrapper button:nth-child(3){
+  background-color: #93e4c1;
+  border: 1px solid #93e4c1;
+}
+#colorSelectionWrapper button:nth-child(4){
+  background-color: #a2d2ff;
+  border: 1px solid #a2d2ff;
+}
+#colorSelectionWrapper button:nth-child(5){
+  background-color: #d59bf6;
+  border: 1px solid #d59bf6;
 }
 
 #view{

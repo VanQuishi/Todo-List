@@ -21,37 +21,29 @@ main.id = "main";
 const nav = document.createElement('div');
 nav.id = "nav";
 
-const navItems = document.createElement('ul');
+nav.innerHTML = `
+  <ul>
+    <li><button>Today</button></li>
+    <li><button>Week</button></li>
+    <li class="projectBtnWrapper"><button id="projectButton">Projects</button><button id="newProjectButton"><img src="${addIcon}" style="width: 1.2rem;"></button></li>    
+  </ul>
+  <div class="projectSwatchesWrapper">
+    <input type="text" id="projectInput">
+    <div>
+      <span title="Click to choose color">
+        <button class="colorBtn" id="colorSelectionToggle"></button>
+      </span>
+      <div id="colorSelectionWrapper">
+        <button class="colorBtn"></button>
+        <button class="colorBtn"></button>
+        <button class="colorBtn"></button>
+        <button class="colorBtn"></button>
+        <button class="colorBtn"></button>
+      </div>
+    </div>
+  </div>
+`
 
-const todayTab = document.createElement('li');
-const todayButton = document.createElement('button');
-todayButton.textContent = "Today";
-todayTab.appendChild(todayButton);
-
-const weekTab = document.createElement('li');
-const weekButton = document.createElement('button');
-weekButton.textContent = "Week";
-weekTab.appendChild(weekButton);
-
-const projectsTab = document.createElement('li');
-const projectButton = document.createElement('button');
-projectButton.textContent = "Projects";
-projectButton.id = "projectButton";
-projectsTab.appendChild(projectButton);
-const newProjectButton = document.createElement('button');
-const addIconWrapper = document.createElement('img');
-addIconWrapper.src = addIcon;
-addIconWrapper.style.width = "1.2rem";
-newProjectButton.appendChild(addIconWrapper);
-newProjectButton.id = "newProjectButton";
-projectsTab.appendChild(newProjectButton);
-
-
-navItems.appendChild(todayTab);
-navItems.appendChild(weekTab);
-navItems.appendChild(projectsTab);
-
-nav.appendChild(navItems);
 main.appendChild(nav);
 
 const viewWrapper = document.createElement('div');
