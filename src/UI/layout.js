@@ -27,6 +27,9 @@ nav.innerHTML = `
     <li><button>Week</button></li>
     <li class="projectBtnWrapper"><button id="projectButton">Projects</button><button id="newProjectButton"><img src="${addIcon}" style="width: 1.2rem;"></button></li>    
   </ul>
+  <div id="projectInputLabel">
+    <label for="projectInput">Project Name:</label>
+  </div>
   <div class="projectSwatchesWrapper">
     <input type="text" id="projectInput">
     <div>
@@ -41,6 +44,10 @@ nav.innerHTML = `
         <button class="colorBtn"></button>
       </div>
     </div>
+  </div>
+  <div class="projectSwatchesWrapper">
+      <button>Add Project</button>
+      <button>Cancel</button>
   </div>
 `
 

@@ -80,6 +80,10 @@ h1, h2, h3, ul{
   border-left: 1px solid #ccc;
   text-align: center;
 }
+#projectInputLabel{
+  margin-top: 1rem;
+  color: black;
+}
 .projectSwatchesWrapper{
   display: flex;
   gap: 10px;
@@ -109,7 +113,7 @@ h1, h2, h3, ul{
 }
 #colorSelectionWrapper{
   display: none;
-  gap: 10px;
+  gap: 0.5rem;
   position: absolute;
   margin-top: 10px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
