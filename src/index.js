@@ -223,3 +223,48 @@ let taskItemCheckboxes = document.getElementsByClassName('taskItemCheckbox');
 for (var i = 0; i < taskItemCheckboxes.length; i++) {
   taskItemCheckboxes[i].addEventListener('click', completeTask);
 }
+
+let colorSelectionWrapper = document.getElementById('colorSelectionWrapper');
+let colorButtons = colorSelectionWrapper.querySelectorAll('.colorBtn');
+
+for (var i = 0; i < colorButtons.length; i++) {
+  let btn = document.getElementById(colorButtons[i].id);
+  console.log(colorButtons[i].style.backgroundColor);
+  btn.addEventListener('click', function() {
+    console.log(this.style.backgroundColor);
+  });
+}
+
+const newProjectButton = document.getElementById('newProjectButton');
+const projectInputForm = document.getElementById('projectInputForm');
+
+newProjectButton.addEventListener('click', function() {
+  if (projectInputForm.style.display == 'none' || projectInputForm.style.display == '') {
+    projectInputForm.style.display = 'block';
+  }
+  else {
+    projectInputForm.style.display = 'none';
+  }
+})
+
+function checkDuplicateProjectName(projectTitle) {
+  for (var i = 0; i < storage.projects.length; i++) {
+    if (storage.projects[i].title == projectTitle) {
+      return true;
+    }
+  }
+  return false;
+}
+
+
+const addProjectBtn = document.getElementById('addProjectBtn');
+
+addProjectBtn.addEventListener('click', function() {
+  let projectInput = document.getElementById('projectInput');
+
+  if (checkDuplicateProjectName(projectInput.innerHTML)) {
+    console.log('duplicate project');
+  } else {
+    console.log('add project successfully');
+  }
+})

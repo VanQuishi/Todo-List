@@ -27,28 +27,30 @@ nav.innerHTML = `
     <li><button>Week</button></li>
     <li class="projectBtnWrapper"><button id="projectButton">Projects</button><button id="newProjectButton"><img src="${addIcon}" style="width: 1.2rem;"></button></li>    
   </ul>
-  <div id="projectInputLabel">
+  <div id="projectInputForm">
+    <div id="projectInputLabel">
     <label for="projectInput">Project Name:</label>
-  </div>
-  <div class="projectSwatchesWrapper">
-    <input type="text" id="projectInput">
-    <div>
-      <span title="Click to choose color">
-        <button class="colorBtn" id="colorSelectionToggle"></button>
-      </span>
-      <div id="colorSelectionWrapper">
-        <button class="colorBtn"></button>
-        <button class="colorBtn"></button>
-        <button class="colorBtn"></button>
-        <button class="colorBtn"></button>
-        <button class="colorBtn"></button>
+    </div>
+    <div class="projectSwatchesWrapper">
+      <input type="text" id="projectInput">
+      <div>
+        <span title="Click to choose color">
+          <button class="colorBtn" id="colorSelectionToggle"></button>
+        </span>
+        <div id="colorSelectionWrapper">
+          <button class="colorBtn" id="btn1"></button>
+          <button class="colorBtn" id="btn2"></button>
+          <button class="colorBtn" id="btn3"></button>
+          <button class="colorBtn" id="btn4"></button>
+          <button class="colorBtn" id="btn5"></button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="projectSwatchesWrapper">
-      <button>Add Project</button>
-      <button>Cancel</button>
-  </div>
+    <div class="projectSwatchesWrapper">
+      <button class="projectFormBtn blueBtn" id="addProjectBtn">Add Project</button>
+      <button class="projectFormBtn redBtn">Cancel</button>
+    </div>
+  </div>  
 `
 
 main.appendChild(nav);

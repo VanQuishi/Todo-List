@@ -68,6 +68,34 @@ h1, h2, h3, ul{
   display: grid;
   grid-template: 1fr / 4fr 1fr;
 }
+.projectFormBtn{
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.projectFormBtn:hover{
+  background-color: #ccc;
+  cursor: pointer;
+}
+.blueBtn{
+  background-color: #0d6efd;
+  color: white;
+  border: 1px solid #0d6efd;
+}
+.blueBtn:hover{
+  background-color: #0b5ed7;
+  color: white;
+  border: 1px solid #0b5ed7;
+}
+.redBtn{
+  background-color: #dc3545;
+  color: white;
+  border: 1px solid #dc3545;
+}
+.redBtn:hover{
+  background-color: #bb2d3b;
+  color: white;
+  border: 1px solid #bb2d3b;
+}
 #nav ul>li>button:hover{
   background-color: #ccc;
   cursor: pointer;
@@ -79,6 +107,10 @@ h1, h2, h3, ul{
 #nav #newProjectButton{
   border-left: 1px solid #ccc;
   text-align: center;
+}
+
+#projectInputForm{
+  display: none;
 }
 #projectInputLabel{
   margin-top: 1rem;
