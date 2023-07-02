@@ -106,11 +106,11 @@ contentDiv.appendChild(layout);
 document.body.appendChild(contentDiv);
 
 const colorSelectionToggle = document.getElementById('colorSelectionToggle');
+const colorSelectionWrapper = document.getElementById("colorSelectionWrapper");
 const view = document.getElementById('view');
 
 colorSelectionToggle.addEventListener("click", function()
 {
-  let colorSelectionWrapper = document.getElementById("colorSelectionWrapper");
   if (colorSelectionWrapper.style.display == "flex") {
     colorSelectionWrapper.style.display = "none";
   } else {
@@ -224,14 +224,15 @@ for (var i = 0; i < taskItemCheckboxes.length; i++) {
   taskItemCheckboxes[i].addEventListener('click', completeTask);
 }
 
-let colorSelectionWrapper = document.getElementById('colorSelectionWrapper');
 let colorButtons = colorSelectionWrapper.querySelectorAll('.colorBtn');
 
 for (var i = 0; i < colorButtons.length; i++) {
-  let btn = document.getElementById(colorButtons[i].id);
-  console.log(colorButtons[i].style.backgroundColor);
-  btn.addEventListener('click', function() {
-    console.log(this.style.backgroundColor);
+  colorButtons[i].addEventListener('click', function() {
+    let cssObj = window.getComputedStyle(this, null)
+    let bgColor = cssObj.getPropertyValue("background-color");
+    colorSelectionToggle.style.backgroundColor =  bgColor;
+    colorSelectionToggle.style.border = `1px solid ${bgColor}`;
+    colorSelectionWrapper.style.display = "none";
   });
 }
 
@@ -256,15 +257,34 @@ function checkDuplicateProjectName(projectTitle) {
   return false;
 }
 
-
+const projectTitleInput = document.getElementById('projectInput');
 const addProjectBtn = document.getElementById('addProjectBtn');
 
 addProjectBtn.addEventListener('click', function() {
-  let projectInput = document.getElementById('projectInput');
+  let projectTitle = document.getElementById('projectInput').value;
 
-  if (checkDuplicateProjectName(projectInput.innerHTML)) {
+  if (checkDuplicateProjectName(projectTitle)) {
     console.log('duplicate project');
-  } else {
-    console.log('add project successfully');
+  } else if (projectTitle == '') {
+    console.log('empty project title');
   }
+  else {
+    let projColor = colorSelectionToggle.style.backgroundColor;
+    let newProject = new Project(projectTitle, projColor, []);
+    console.log(projColor);
+    if (storage.addProject(newProject)) {
+      storage.saveProjects();
+      console.log('add project successfully');
+    } else {
+      console.log('fail to add project');
+    }
+  }
+})
+
+const cancelProjectBtn = document.getElementById('cancelProjectBtn');
+
+cancelProjectBtn.addEventListener('click', function() {
+  colorSelectionWrapper.style.display = "none";
+  projectTitleInput.value = '';
+  projectInputForm.style.display = 'none';
 })

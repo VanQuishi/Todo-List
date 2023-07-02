@@ -2,6 +2,7 @@
   --headerHeight: 100px;
   --footerHeight: 50px;
   --mainHeight: calc(100vh - calc(var(--headerHeight) + var(--footerHeight)));
+  --yellow-bg: #f8da5b;
 }
 
 body{
@@ -174,8 +175,14 @@ h1, h2, h3, ul{
   border: 1px solid #d59bf6;
 }
 
+#viewWrapper{
+  display: flex;
+  gap: 1.5rem;
+  padding: 20px;
+  justify-content: center;
+}
 #view{
-  margin: 20px auto;
+/*   margin: 20px auto; */
   width: 60%;
   color: black;
   display: flex;
@@ -184,6 +191,13 @@ h1, h2, h3, ul{
 }
 .viewChild{
   flex: 1;
+}
+#addTaskBtn{
+  padding: 20px 10px 20px 10px;
+  border-radius: 5px;
+}
+#addTaskBtn:hover{
+  cursor: pointer;
 }
 
 .projectTitleButton{

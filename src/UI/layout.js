@@ -48,7 +48,7 @@ nav.innerHTML = `
     </div>
     <div class="projectSwatchesWrapper">
       <button class="projectFormBtn blueBtn" id="addProjectBtn">Add Project</button>
-      <button class="projectFormBtn redBtn">Cancel</button>
+      <button class="projectFormBtn redBtn" id="cancelProjectBtn">Cancel</button>
     </div>
   </div>  
 `
@@ -56,10 +56,19 @@ nav.innerHTML = `
 main.appendChild(nav);
 
 const viewWrapper = document.createElement('div');
+viewWrapper.id = "viewWrapper";
+
 const view = document.createElement('div');
 view.id = 'view';
 
+const addTaskWrapper = document.createElement('div');
+addTaskWrapper.id = "addTaskWrapper";
+addTaskWrapper.innerHTML = `
+  <button class="blueBtn" id="addTaskBtn">Add Task</button>
+`;
+
 viewWrapper.appendChild(view);
+viewWrapper.appendChild(addTaskWrapper);
 main.appendChild(viewWrapper);
 
 
