@@ -244,6 +244,24 @@ h1, h2, h3, ul{
   gap: 1rem;
 }
 
+#taskFormWrapper{
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 50%;
+  position: absolute;
+  margin: 0;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  width: 20rem;
+  background-color: #eee;
+}
+
+#taskForm{
+  display: flex;
+  flex-direction: column;
+}
+
 #footer{
   background-color: black;
   height: var(--footerHeight);

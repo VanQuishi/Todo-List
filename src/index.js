@@ -6,6 +6,7 @@ import layout from "./UI/layout";
 import ProjectView from "./UI/ProjectView";
 import TodayView from "./UI/TodayView";
 import WeekView from "./UI/WeekView";
+import TaskForm from "./UI/TaskForm";
 
 const todayDateObj = new Date();
 
@@ -103,6 +104,7 @@ for (let i = 0; i < storage.projects.length; i++) {
 /* End of logic test */
 
 contentDiv.appendChild(layout);
+contentDiv.appendChild(TaskForm);
 document.body.appendChild(contentDiv);
 
 const colorSelectionToggle = document.getElementById('colorSelectionToggle');
