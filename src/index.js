@@ -20,23 +20,23 @@ console.log(project1.tasks);
 const contentDiv = document.createElement('div');
 contentDiv.id = "content";
 
-var dueDate = new Date("17 May 2023 5:00:00");
-var task1 = new Task("Planning logic 1", "Write down things", dueDate)  //Month is May but we're passing 4 because counter starting at 0 - Jan
+var dueDateTest = new Date("17 May 2023 5:00:00");
+var task1 = new Task("Planning logic 1", "Write down things", dueDateTest)  //Month is May but we're passing 4 because counter starting at 0 - Jan
 console.log(task1.dueDateAndTime, task1.isCompleted);
 
-dueDate = new Date("20 May 2023 5:00:00");
-var task2 = new Task("Planning logic 2 ", "Write down things", dueDate)  //Month is May but we're passing 4 because counter starting at 0 - Jan
+dueDateTest = new Date("20 May 2023 5:00:00");
+var task2 = new Task("Planning logic 2 ", "Write down things", dueDateTest)  //Month is May but we're passing 4 because counter starting at 0 - Jan
 console.log(task2.dueDateAndTime, task2.isCompleted);
 
-dueDate = new Date("10 June 2023 5:00:00");
-var task3 = new Task("Planning logic 3", "Write down things", dueDate)  //Month is May but we're passing 4 because counter starting at 0 - Jan
+dueDateTest = new Date("10 June 2023 5:00:00");
+var task3 = new Task("Planning logic 3", "Write down things", dueDateTest)  //Month is May but we're passing 4 because counter starting at 0 - Jan
 console.log(task3.dueDateAndTime, task3.isCompleted);
 
 project1.tasks = [task1, task3, task2];
 console.log(project1.tasks);
 
-var dueDate = new Date("15 May 2023 5:00:00");
-var task0 = new Task("Planning logic 0", "Write down things", dueDate)  //Month is May but we're passing 4 because counter starting at 0 - Jan
+var dueDateTest = new Date("15 May 2023 5:00:00");
+var task0 = new Task("Planning logic 0", "Write down things", dueDateTest)  //Month is May but we're passing 4 because counter starting at 0 - Jan
 console.log(task1.dueDateAndTime, task0.isCompleted);
 
 project1.addTask(task0);
@@ -47,16 +47,16 @@ console.log(project1.tasks);
 
 var project2 = new Project("Odin2", "#a2d2ff", []);
 
-var dueDate = new Date("10 June 2023 5:00:00");
-var task4 = new Task("Planning logic 4", "Write down things", dueDate)  //Month is May but we're passing 4 because counter starting at 0 - Jan
+var dueDateTest = new Date("10 June 2023 5:00:00");
+var task4 = new Task("Planning logic 4", "Write down things", dueDateTest)  //Month is May but we're passing 4 because counter starting at 0 - Jan
 console.log(task4.dueDateAndTime, task4.isCompleted);
 
-dueDate = new Date("20 May 2023 5:00:00");
-var task5 = new Task("Planning logic 2 ", "Write down things", dueDate)  //Month is May but we're passing 4 because counter starting at 0 - Jan
+dueDateTest = new Date("20 May 2023 5:00:00");
+var task5 = new Task("Planning logic 2 ", "Write down things", dueDateTest)  //Month is May but we're passing 4 because counter starting at 0 - Jan
 console.log(task5.dueDateAndTime, task5.isCompleted);
 
-dueDate = new Date("8 June 2023 5:00:00");
-var task6 = new Task("Planning logic 3", "Write down things", dueDate)  //Month is May but we're passing 4 because counter starting at 0 - Jan
+dueDateTest = new Date("8 June 2023 5:00:00");
+var task6 = new Task("Planning logic 3", "Write down things", dueDateTest)  //Month is May but we're passing 4 because counter starting at 0 - Jan
 console.log(task6.dueDateAndTime, task6.isCompleted);
 
 project2.tasks = [task4, task5, task6];
@@ -261,6 +261,7 @@ function checkDuplicateProjectName(projectTitle) {
 
 const projectTitleInput = document.getElementById('projectInput');
 const addProjectBtn = document.getElementById('addProjectBtn');
+const cancelProjectBtn = document.getElementById('cancelProjectBtn');
 
 addProjectBtn.addEventListener('click', function() {
   let projectTitle = document.getElementById('projectInput').value;
@@ -283,10 +284,27 @@ addProjectBtn.addEventListener('click', function() {
   }
 })
 
-const cancelProjectBtn = document.getElementById('cancelProjectBtn');
-
 cancelProjectBtn.addEventListener('click', function() {
   colorSelectionWrapper.style.display = "none";
   projectTitleInput.value = '';
   projectInputForm.style.display = 'none';
+})
+
+const addTaskBtn = document.getElementById('addTaskBtn');
+const taskFormWrapper = document.getElementById('taskFormWrapper');
+const taskForm = document.getElementById('taskForm');
+const cancelTaskBtn = document.getElementById('cancelTaskBtn');
+const taskTitleInput = document.getElementById('taskTitleInput');
+const taskDescription = document.getElementById('taskDescription');
+const dueDate = document.getElementById('dueDate');
+
+addTaskBtn.addEventListener('click', function() {
+  taskFormWrapper.style.display = "block";
+})
+
+cancelTaskBtn.addEventListener('click', function() {
+  taskFormWrapper.style.display = "none";
+  taskTitleInput.value = '';
+  taskDescription.value = '';
+  dueDate.value = '';
 })

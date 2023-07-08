@@ -18,6 +18,10 @@ h1, h2, h3, ul{
   margin: 0;
 }
 
+button:hover{
+  cursor: pointer;
+}
+
 #header{
   background-color: black;
   height: var(--headerHeight);
@@ -193,8 +197,7 @@ h1, h2, h3, ul{
   flex: 1;
 }
 #addTaskBtn{
-  padding: 20px 10px 20px 10px;
-  border-radius: 5px;
+  padding: 10px;
 }
 #addTaskBtn:hover{
   cursor: pointer;
@@ -245,6 +248,7 @@ h1, h2, h3, ul{
 }
 
 #taskFormWrapper{
+  display: none;
   top: 50%;
   transform: translate(0, -50%);
   left: 50%;
@@ -252,14 +256,32 @@ h1, h2, h3, ul{
   margin: 0;
   color: black;
   border: 1px solid #ccc;
+  border-radius: 5px;
   padding: 1rem;
   width: 20rem;
-  background-color: #eee;
+  background-color: #f9fafb;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
-
 #taskForm{
   display: flex;
   flex-direction: column;
+  height: 300px;
+  justify-content: space-evenly;
+}
+#taskForm label{
+  margin-top: 10px;
+}
+#taskForm input{
+  height: 50px;
+}
+#btnTaskWrapper{
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+.btnTask{
+  padding: 10px;
 }
 
 #footer{
