@@ -64,7 +64,7 @@ view.id = 'view';
 const addTaskWrapper = document.createElement('div');
 addTaskWrapper.id = "addTaskWrapper";
 addTaskWrapper.innerHTML = `
-  <button class="blueBtn" id="addTaskBtn">Add Task</button>
+  <button class="blueBtn" id="addTaskBtn">New Task</button>
 `;
 
 viewWrapper.appendChild(view);
@@ -76,7 +76,7 @@ main.appendChild(viewWrapper);
 const footer = document.createElement('div');
 footer.id = "footer";
 const creditWrapper = document.createElement('p');
-creditWrapper.textContent = "Made by Nin"
+creditWrapper.textContent = "Made by Nin";
 const githubWrapper = document.createElement('img');
 githubWrapper.src = githubLogo;
 footer.appendChild(creditWrapper);

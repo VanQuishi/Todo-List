@@ -52,12 +52,19 @@ export default class LocalStorage {
 
       var _projects = [];
       existingProjects.forEach(function(item) {
-        console.log(item['title']);
-        let project = new Project(item['title'], item['color'], item['tasks']);
+        let tasks = [];
+        for (var i = 0; i < item['tasks'].length; i++) {
+          let dueDate = new Date(item['tasks'][i]['dueDateAndTime']);
+          let task = new Task(item['tasks'][i]['title'], item['tasks'][i]['description'], dueDate, item['tasks'][i]['isCompleted']);
+          tasks.push(task);
+        }
+        console.log('tasks', tasks);
+        let project = new Project(item['title'], item['color'], tasks);
         _projects.push(project);
       });
 
       this.projects = _projects;
+      console.log("called loadProjects", this.projects);
     }
   }
 }

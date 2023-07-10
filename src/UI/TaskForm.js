@@ -6,14 +6,16 @@ TaskForm.innerHTML = `
     <h3>New Task</h3>
   </div>
   <div id="taskForm">
-    <label for="taskTitle">Task Title:</label>
-    <input type="text" id="taskTitleInput" for="taskTitle">
+    <label for="taskTitle">Task Title<span class="asterisk">*</span></label>
+    <input type="text" id="taskTitleInput" for="taskTitle" required>
     <label for="taskDescription">Description:</label>
     <textarea id="taskDescription" for="taskDescription" rows="5"></textarea>
-    <label for="dueDate">Due date:</label>
-    <input type="date" for="dueDate" id="dueDate">
+    <label for="project">Project<span class="asterisk">*</span></label>
+    <select name="project" id="projectDropdown"></select>
+    <label for="dueDate">Due date<span class="asterisk">*</span></label>
+    <input type="date" for="dueDate" id="dueDate" required>
     <div id="btnTaskWrapper">
-      <button class="blueBtn btnTask" id="addTaskBtn">Add Task</button>
+      <button class="blueBtn btnTask" id="submitTaskBtn">Add Task</button>
       <button class="redBtn btnTask" id="cancelTaskBtn">Cancel</button>
     </div>
   </div>

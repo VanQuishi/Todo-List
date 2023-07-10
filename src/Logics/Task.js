@@ -3,11 +3,11 @@ export default class Task {
   description;
   dueDateAndTime;
   isCompleted;
-  constructor(_title, _description, _dueDateAndTime) {
+  constructor(_title, _description, _dueDateAndTime, _isCompleted) {
     this.title = _title;
     this.description = _description;
     this.dueDateAndTime = _dueDateAndTime;
-    this.isCompleted = false;
+    this.isCompleted = _isCompleted;
   }
 
   set title(_title) {
