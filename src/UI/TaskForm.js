@@ -3,7 +3,7 @@ TaskForm.id = "taskFormWrapper";
 
 TaskForm.innerHTML = `
   <div style="display: flex; justify-content: center">
-    <h3>New Task</h3>
+    <h3 id="taskFormTitle">New Task</h3>
   </div>
   <div id="taskForm">
     <label for="taskTitle">Task Title<span class="asterisk">*</span></label>
@@ -15,7 +15,7 @@ TaskForm.innerHTML = `
     <label for="dueDate">Due date<span class="asterisk">*</span></label>
     <input type="date" for="dueDate" id="dueDate" required>
     <div id="btnTaskWrapper">
-      <button class="blueBtn btnTask" id="submitTaskBtn">Add Task</button>
+      <button class="blueBtn btnTask" id="submitTaskBtn" data-taskeditid="">Add Task</button>
       <button class="redBtn btnTask" id="cancelTaskBtn">Cancel</button>
     </div>
   </div>

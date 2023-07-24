@@ -52,15 +52,6 @@ button:hover{
 }
 #nav li{
   border: 1px solid #ccc;
-  /* padding-left: 20px; */
-}
-#nav li:hover{
-  background-color: #ccc;
-  cursor: pointer;
-}
-#nav li:active{
-  background-color: #ccc;
-  cursor: pointer;
 }
 #nav ul>li>button{
   width: 100%;
@@ -80,6 +71,19 @@ button:hover{
 .projectFormBtn:hover{
   background-color: #ccc;
   cursor: pointer;
+}
+.projectItemBtnWrapper{
+  display: grid;
+  grid-template: 1fr / 3fr 1fr 1fr;
+}
+.projectName{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#projectListWrapper{
+  margin-top: 1rem;
+  margin-left: 2rem;
 }
 .blueBtn{
   background-color: #0d6efd;
@@ -209,6 +213,7 @@ button:hover{
   font-weight: bold;
   font-size: 1.2rem;
   cursor: pointer;
+  border: none;
 }
 
 .taskItem{

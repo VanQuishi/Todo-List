@@ -29,7 +29,7 @@ nav.innerHTML = `
   </ul>
   <div id="projectInputForm">
     <div id="projectInputLabel">
-    <label for="projectInput">Project Name:</label>
+      <label for="projectInput">Project Name:</label>
     </div>
     <div class="projectSwatchesWrapper">
       <input type="text" id="projectInput">
@@ -51,6 +51,10 @@ nav.innerHTML = `
       <button class="projectFormBtn redBtn" id="cancelProjectBtn">Cancel</button>
     </div>
   </div>  
+  <div id="projectListWrapper">
+    <ul id="projectList">
+    </ul>
+  </div>
 `
 
 main.appendChild(nav);

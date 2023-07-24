@@ -7,6 +7,8 @@ import ProjectView from "./UI/ProjectView";
 import TodayView from "./UI/TodayView";
 import WeekView from "./UI/WeekView";
 import TaskForm from "./UI/TaskForm";
+import editIcon from "./assets/edit_icon.svg";
+import deleteIcon from "./assets/delete_icon.svg";
 
 const todayDateObj = new Date();
 
@@ -19,9 +21,6 @@ console.log("load projects from storage", storage.projects);
 
 var storage2 = new LocalStorage([]);
 storage2.loadProjects();
-
-var project3 = new Project("Odin3", "#fcf6bd", []);
-
 
 var today = new Date();
 storage.projects[0].tasks[0].dueDateAndTime = today;
@@ -50,6 +49,8 @@ document.body.appendChild(contentDiv);
 const colorSelectionToggle = document.getElementById('colorSelectionToggle');
 const colorSelectionWrapper = document.getElementById("colorSelectionWrapper");
 const view = document.getElementById('view');
+const projectList = document.getElementById('projectList');
+var projectDisplayItems = "";
 
 colorSelectionToggle.addEventListener("click", function()
 {
@@ -60,7 +61,21 @@ colorSelectionToggle.addEventListener("click", function()
   }
 })
 
-// Project View
+//Display Projects on side bar
+for (let i = 0; i < storage.projects.length; i++) {
+  var html = `
+    <li class="projectItemBtnWrapper">
+      <div class="projectName">${storage.projects[i].title}</div>
+      <button class="editProjectBtn"><img src="${editIcon}" style="width: 1.2rem;"></button>
+      <button class="deleteProjectBtn"><img src="${deleteIcon}" style="width: 1.2rem;"></button>
+    </li>
+  `
+  projectDisplayItems += html;
+}
+
+projectList.innerHTML = projectDisplayItems;
+
+//Project View
 for (let i = 0; i < storage.projects.length; i++) {
   var projectView = new ProjectView(storage.projects[i].title, storage.projects[i].color, storage.projects[i].tasks);
   view.appendChild(projectView.htmlDisplay);
@@ -107,7 +122,7 @@ view.appendChild(weekView.htmlDisplay);
 
 //function to hide/show taskList
 function toggleList() {
-  let list = document.getElementById(`${this.textContent}` + 'taskListWrapper');
+  let list = document.getElementById(`${this.dataset.project}` + 'taskListWrapper');
   console.log(list);
   if (list.style.display != 'none') {
       list.style.display = 'none';
@@ -120,6 +135,7 @@ function toggleList() {
 let projectTitleButtons = document.getElementsByClassName('projectTitleButton');
 
 for (var i = 0; i < projectTitleButtons.length; i++) {
+  console.log(projectTitleButtons);
   projectTitleButtons[i].addEventListener('click', toggleList);
 }
 
@@ -233,6 +249,7 @@ cancelProjectBtn.addEventListener('click', function() {
 const addTaskBtn = document.getElementById('addTaskBtn');
 const taskFormWrapper = document.getElementById('taskFormWrapper');
 const taskForm = document.getElementById('taskForm');
+const taskFormTitle = document.getElementById('taskFormTitle');
 const cancelTaskBtn = document.getElementById('cancelTaskBtn');
 const taskTitleInput = document.getElementById('taskTitleInput');
 const taskDescription = document.getElementById('taskDescription');
@@ -240,6 +257,9 @@ const dueDate = document.getElementById('dueDate');
 const submitTaskBtn = document.getElementById('submitTaskBtn');
 
 addTaskBtn.addEventListener('click', function() {
+  taskFormTitle.innerText = "New Task";
+  submitTaskBtn.innerText = "Add Task";
+  projectDropdown.disabled = false;
   taskFormWrapper.style.display = "block";
 })
 
@@ -262,12 +282,22 @@ console.log("option:", projectDropdown.value);
 
 submitTaskBtn.addEventListener('click', function() {
   if (taskTitleInput.value != '' && dueDate.value != '') {
-    var task = new Task(taskTitleInput.value,  taskDescription.value, dueDate.value);
+    if (submitTaskBtn.innerText == "Add Task") {
+      let dueDateObj = new Date(dueDate.value.replace(/-/g, '\/'));
+      var task = new Task(taskTitleInput.value,  taskDescription.value, dueDateObj);
 
-    for (var i = 0; i < storage.projects.length; i++) {
-      if (storage.projects[i].title == projectDropdown.value) {
-        storage.projects[i].addTask(task);
+      for (var i = 0; i < storage.projects.length; i++) {
+        if (storage.projects[i].title == projectDropdown.value) {
+          storage.projects[i].addTask(task);
+        }
       }
+    } else if (submitTaskBtn.innerText == "Confirm Change") {
+      let taskIdx = submitTaskBtn.dataset.taskeditid;
+      let projectIdx = findProjectIndex(projectDropdown.value);
+      storage.projects[projectIdx].tasks[taskIdx].title = taskTitleInput.value;
+      storage.projects[projectIdx].tasks[taskIdx].description = taskDescription.value;
+      let dueDateObj = new Date(dueDate.value.replace(/-/g, '\/'));
+      storage.projects[projectIdx].tasks[taskIdx].dueDateAndTime = dueDateObj;
     }
 
     storage.saveProjects();
@@ -277,3 +307,55 @@ submitTaskBtn.addEventListener('click', function() {
   taskFormWrapper.style.display = "none";
   return;
 })
+
+function findProjectIndex(projectName) {
+  for (var i = 0; i < storage.projects.length; i++) {
+    if (storage.projects[i].title == projectName) {
+      return i;
+    }
+  }
+}
+
+//delete task
+const deleteTaskButtons = document.getElementsByClassName('deleteTaskBtn');
+console.log(deleteTaskButtons);
+
+for (var i = 0; i < deleteTaskButtons.length; i++) {
+  deleteTaskButtons[i].addEventListener('click', function() {
+    let projectIdx = findProjectIndex(this.parentElement.dataset.prjname);
+    let taskIdx = this.parentElement.dataset.taskidx;
+    storage.projects[projectIdx].removeTask(taskIdx);
+    storage.saveProjects();
+    this.parentElement.style.display = 'none';
+  })
+}
+
+//edit task
+const editTaskButtons = document.getElementsByClassName('editTaskBtn');
+console.log(editTaskButtons);
+
+for (var i = 0; i < editTaskButtons.length; i++) {
+  editTaskButtons[i].addEventListener('click', function() {
+    console.log('edit task clicked!', this.parentElement.dataset.duedate);
+    taskFormTitle.innerText = "Edit Task";
+    submitTaskBtn.innerText = "Confirm Change";
+    submitTaskBtn.dataset.taskeditid = this.parentElement.dataset.taskidx;
+    taskFormWrapper.style.display = "block";
+    taskTitleInput.value = this.parentElement.dataset.tasktitle;
+    taskDescription.value = this.parentElement.dataset.desc;
+    projectDropdown.value = this.parentElement.dataset.project;
+    projectDropdown.disabled = true;
+    var todayDate = new Date(this.parentElement.dataset.duedate).toISOString().slice(0, 10);
+    dueDate.value = todayDate;
+  })
+}
+
+//delete project
+const editProjectButtons = document.getElementsByClassName('editProjectBtn');
+console.log(editProjectButtons)
+
+for (var i = 0; i < editProjectButtons.length; i++) {
+  editProjectButtons[i].addEventListener('click', function() {
+    console.log('clicked edit prject')
+  })
+}
