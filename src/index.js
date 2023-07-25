@@ -66,7 +66,7 @@ for (let i = 0; i < storage.projects.length; i++) {
   var html = `
     <li class="projectItemBtnWrapper">
       <div class="projectName">${storage.projects[i].title}</div>
-      <button class="editProjectBtn"><img src="${editIcon}" style="width: 1.2rem;"></button>
+      <button class="editProjectBtn" data-projname="${storage.projects[i].title}" data-color="${storage.projects[i].color}"><img src="${editIcon}" style="width: 1.2rem;"></button>
       <button class="deleteProjectBtn"><img src="${deleteIcon}" style="width: 1.2rem;"></button>
     </li>
   `
@@ -356,6 +356,20 @@ console.log(editProjectButtons)
 
 for (var i = 0; i < editProjectButtons.length; i++) {
   editProjectButtons[i].addEventListener('click', function() {
-    console.log('clicked edit prject')
+    console.log('clicked edit prject');
+    if (projectInputForm.style.display == 'none' || projectInputForm.style.display == '') {
+      projectTitleInput.value = this.dataset.projname;
+      colorSelectionToggle.style.backgroundColor = `${this.dataset.color}`;
+      colorSelectionToggle.style.border = `1px solid ${this.dataset.color}`;
+      addProjectBtn.innerText = "Confirm change";
+      projectInputForm.style.display = 'block';
+    }
+    else {
+      //projectInputForm.style.display = 'none';
+      projectTitleInput.value = this.dataset.projname;
+      colorSelectionToggle.style.backgroundColor = `${this.dataset.color}`;
+      colorSelectionToggle.style.border = `1px solid ${this.dataset.color}`;
+      addProjectBtn.innerText = "Confirm change";
+    }
   })
 }
