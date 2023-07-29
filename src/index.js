@@ -24,7 +24,6 @@ storage2.loadProjects();
 
 var today = new Date();
 storage.projects[0].tasks[0].dueDateAndTime = today;
-storage.projects[1].tasks[0].dueDateAndTime = today;
 
 var todayTasks = [];
 
@@ -67,7 +66,7 @@ for (let i = 0; i < storage.projects.length; i++) {
     <li class="projectItemBtnWrapper">
       <div class="projectName">${storage.projects[i].title}</div>
       <button class="editProjectBtn" data-projname="${storage.projects[i].title}" data-color="${storage.projects[i].color}"><img src="${editIcon}" style="width: 1.2rem;"></button>
-      <button class="deleteProjectBtn"><img src="${deleteIcon}" style="width: 1.2rem;"></button>
+      <button class="deleteProjectBtn" data-projname="${storage.projects[i].title}"><img src="${deleteIcon}" style="width: 1.2rem;"></button>
     </li>
   `
   projectDisplayItems += html;
@@ -198,7 +197,10 @@ const newProjectButton = document.getElementById('newProjectButton');
 const projectInputForm = document.getElementById('projectInputForm');
 
 newProjectButton.addEventListener('click', function() {
-  if (projectInputForm.style.display == 'none' || projectInputForm.style.display == '') {
+  if (addProjectBtn.innerText == "Confirm change" || projectInputForm.style.display == 'none' || projectInputForm.style.display == '') {
+    projectTitleInput.value = "";
+    addProjectBtn.dataset.projname = "";
+    addProjectBtn.innerText = "Add Project";
     projectInputForm.style.display = 'block';
   }
   else {
@@ -221,21 +223,37 @@ const cancelProjectBtn = document.getElementById('cancelProjectBtn');
 
 addProjectBtn.addEventListener('click', function() {
   let projectTitle = document.getElementById('projectInput').value;
+  let projColor = colorSelectionToggle.style.backgroundColor;
 
-  if (checkDuplicateProjectName(projectTitle)) {
-    console.log('duplicate project');
-  } else if (projectTitle == '') {
+  if (projectTitle == '') {
     console.log('empty project title');
   }
   else {
-    let projColor = colorSelectionToggle.style.backgroundColor;
-    let newProject = new Project(projectTitle, projColor, []);
-    console.log(projColor);
-    if (storage.addProject(newProject)) {
+    if (addProjectBtn.innerText == "Add Project") {
+      if (!checkDuplicateProjectName(projectTitle)) {       
+        let newProject = new Project(projectTitle, projColor, []);
+        if (storage.addProject(newProject)) {
+          storage.saveProjects();
+          console.log('add project successfully');
+        } else {
+          console.log('fail to add project');
+        }
+      } else {
+        console.log("Duplicate project name");
+        return;
+      }
+    } else if (addProjectBtn.innerText == "Confirm change") {
+      if (projectTitle != this.dataset.projname) {
+        if (checkDuplicateProjectName(projectTitle)) {
+          console.log("Duplicate project name");
+          return;
+        }
+      }
+      let projectIdx = findProjectIndex(this.dataset.projname);
+      console.log(this.dataset.projname, projectIdx);
+      storage.projects[projectIdx].title = projectTitle;
+      storage.projects[projectIdx].color = projColor;
       storage.saveProjects();
-      console.log('add project successfully');
-    } else {
-      console.log('fail to add project');
     }
   }
 })
@@ -350,15 +368,15 @@ for (var i = 0; i < editTaskButtons.length; i++) {
   })
 }
 
-//delete project
+//edit project
 const editProjectButtons = document.getElementsByClassName('editProjectBtn');
-console.log(editProjectButtons)
 
 for (var i = 0; i < editProjectButtons.length; i++) {
   editProjectButtons[i].addEventListener('click', function() {
     console.log('clicked edit prject');
-    if (projectInputForm.style.display == 'none' || projectInputForm.style.display == '') {
+    if (addProjectBtn.innerText = "Add Project" || projectInputForm.style.display == 'none' || projectInputForm.style.display == '') {
       projectTitleInput.value = this.dataset.projname;
+      addProjectBtn.dataset.projname = this.dataset.projname;
       colorSelectionToggle.style.backgroundColor = `${this.dataset.color}`;
       colorSelectionToggle.style.border = `1px solid ${this.dataset.color}`;
       addProjectBtn.innerText = "Confirm change";
@@ -371,5 +389,17 @@ for (var i = 0; i < editProjectButtons.length; i++) {
       colorSelectionToggle.style.border = `1px solid ${this.dataset.color}`;
       addProjectBtn.innerText = "Confirm change";
     }
+  })
+}
+
+// delete project
+const deleteProjectButtons = document.getElementsByClassName('deleteProjectBtn');
+console.log(deleteProjectButtons);
+
+for (var i = 0; i < deleteProjectButtons.length; i++) {
+  deleteProjectButtons[i].addEventListener('click', function() {
+    console.log(this.dataset.projname);
+    storage.removeProject(this.dataset.projname);
+    storage.saveProjects();
   })
 }
