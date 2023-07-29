@@ -53,7 +53,7 @@ export default class ProjectView {
                 <input type="checkbox" class="taskItemCheckbox">
                 <div>${task.title}</div>
                 <div>${dueDate}</div>
-                <div class="editTaskBtn" >
+                <div class="editTaskBtn">
                     <img src="${editIcon}">
                 </div>
                 <div class="deleteTaskBtn">

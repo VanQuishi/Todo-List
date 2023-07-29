@@ -9,7 +9,7 @@ export default class WeekView {
 
     let taskItems = ""
     weekList.forEach(item => {     
-      taskItems += this.createTaskItem(item[0], item[1], item[2]);
+      taskItems += this.createTaskItem(item[0], item[1], item[2], item[3]);
     });
 
     weekWrapper.innerHTML += `
@@ -25,17 +25,17 @@ export default class WeekView {
     this.htmlDisplay = weekWrapper;
   }
 
-  createTaskItem = (task, projectTitle, projectColor) => {
+  createTaskItem = (task, projectTitle, projectColor, idx) => {
     let taskItemHTML = "";
     if (task.isCompleted) {
       taskItemHTML = `
-        <li class="taskItem ${projectTitle} taskItemToday taskItemCross" style="background-color:${projectColor}">
+        <li class="taskItem ${projectTitle} taskItemToday taskItemCross" style="background-color:${projectColor}" data-project="${projectTitle}" data-tasktitle="${task.title}" data-desc="${task.description}" data-duedate="${task.dueDateAndTime}" data-prjname="${projectTitle}" data-taskidx="${idx}">
             <input type="checkbox" class="taskItemCheckbox" checked>
             <div>${task.title}</div>
-            <div>
+            <div class="editTaskBtn">
               <img src="${editIcon}">
             </div>
-            <div>
+            <div class="deleteTaskBtn">
               <img src="${deleteIcon}">
             </div>
         </li>
@@ -43,13 +43,13 @@ export default class WeekView {
     }
     else {
       taskItemHTML = `
-        <li class="taskItem ${projectTitle} taskItemToday" style="background-color:${projectColor}">
+        <li class="taskItem ${projectTitle} taskItemToday" style="background-color:${projectColor}" data-project="${projectTitle}" data-tasktitle="${task.title}" data-desc="${task.description}" data-duedate="${task.dueDateAndTime}" data-prjname="${projectTitle}" data-taskidx="${idx}">
             <input type="checkbox" class="taskItemCheckbox">
             <div>${task.title}</div>
-            <div>
+            <div class="editTaskBtn">
               <img src="${editIcon}">
             </div>
-            <div>
+            <div class="deleteTaskBtn">
               <img src="${deleteIcon}">
             </div>
         </li>

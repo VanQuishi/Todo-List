@@ -23,9 +23,9 @@ nav.id = "nav";
 
 nav.innerHTML = `
   <ul>
-    <li><button>Today</button></li>
-    <li><button>Week</button></li>
-    <li class="projectBtnWrapper"><button id="projectButton">Projects</button><button id="newProjectButton"><img src="${addIcon}" style="width: 1.2rem;"></button></li>    
+    <li><button id="todayViewBtn">Today</button></li>
+    <li><button id="weekViewBtn">Week</button></li>
+    <li class="projectBtnWrapper"><button id="projectViewBtn">Projects</button><button id="newProjectButton"><img src="${addIcon}" style="width: 1.2rem;"></button></li>    
   </ul>
   <div id="projectInputForm">
     <div id="projectInputLabel">
