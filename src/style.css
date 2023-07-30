@@ -182,6 +182,12 @@ button:hover{
   background-color: #d59bf6;
   border: 1px solid #d59bf6;
 }
+#nav #projectList{
+  border: 1px solid #ccc;
+  height: 15rem;
+  overflow-y: scroll; 
+  padding: 5px;
+}
 
 #viewWrapper{
   display: flex;
