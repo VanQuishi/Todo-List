@@ -33,6 +33,7 @@ const projectViewBtn = document.getElementById('projectViewBtn');
 const colorSelectionToggle = document.getElementById('colorSelectionToggle');
 const colorSelectionWrapper = document.getElementById("colorSelectionWrapper");
 const view = document.getElementById('view');
+const projectListWrapper = document.getElementById('projectListWrapper');
 const projectList = document.getElementById('projectList');
 
 var deleteTaskButtons;
@@ -40,19 +41,24 @@ var editTaskButtons;
 var taskItemCheckboxes;
 
 //Display Projects on side bar
-var projectDisplayItems = "";
-for (let i = 0; i < storage.projects.length; i++) {
-  var html = `
-    <li class="projectItemBtnWrapper" style="border-color: ${storage.projects[i].color}">
-      <div class="projectName">${storage.projects[i].title}</div>
-      <button class="editProjectBtn" data-projname="${storage.projects[i].title}" data-color="${storage.projects[i].color}"><img src="${editIcon}" style="width: 1.2rem;"></button>
-      <button class="deleteProjectBtn" data-projname="${storage.projects[i].title}"><img src="${deleteIcon}" style="width: 1.2rem;"></button>
-    </li>
-  `
-  projectDisplayItems += html;
-}
+if (storage.projects.length == 0) {
+  projectListWrapper.style.display = 'none';
+} else {
+  projectListWrapper.style.display = 'block';
+  var projectDisplayItems = "";
+  for (let i = 0; i < storage.projects.length; i++) {
+    var html = `
+      <li class="projectItemBtnWrapper" style="border-color: ${storage.projects[i].color}">
+        <div class="projectName">${storage.projects[i].title}</div>
+        <button class="editProjectBtn" data-projname="${storage.projects[i].title}" data-color="${storage.projects[i].color}"><img src="${editIcon}" style="width: 1.2rem;"></button>
+        <button class="deleteProjectBtn" data-projname="${storage.projects[i].title}"><img src="${deleteIcon}" style="width: 1.2rem;"></button>
+      </li>
+    `
+    projectDisplayItems += html;
+  }
 
-projectList.innerHTML = projectDisplayItems;
+  projectList.innerHTML = projectDisplayItems;
+}
 
 var todayTasks = [];
 for (let i = 0; i < storage.projects.length; i++) {
