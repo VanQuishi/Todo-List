@@ -37,6 +37,7 @@ const projectList = document.getElementById('projectList');
 
 var deleteTaskButtons;
 var editTaskButtons;
+var taskItemCheckboxes;
 
 //Display Projects on side bar
 var projectDisplayItems = "";
@@ -75,9 +76,11 @@ todayViewBtn.addEventListener('click', function() {
   console.log(todayView);
   view.appendChild(todayView.htmlDisplay);
 
+  taskItemCheckboxes = document.getElementsByClassName('taskItemCheckbox');
   deleteTaskButtons = document.getElementsByClassName('deleteTaskBtn');
   console.log({deleteTaskButtons});
   editTaskButtons = document.getElementsByClassName('editTaskBtn');
+  refreshTaskChkBoxes();
   refreshEditDelTaskBtns();
 })
 
@@ -103,9 +106,11 @@ weekViewBtn.addEventListener('click', function() {
   console.log(weekView);
   view.appendChild(weekView.htmlDisplay);
 
+  taskItemCheckboxes = document.getElementsByClassName('taskItemCheckbox');
+  console.log({taskItemCheckboxes});
   deleteTaskButtons = document.getElementsByClassName('deleteTaskBtn');
-  console.log({deleteTaskButtons});
   editTaskButtons = document.getElementsByClassName('editTaskBtn');
+  refreshTaskChkBoxes();
   refreshEditDelTaskBtns();
 })
 
@@ -124,8 +129,11 @@ projectViewBtn.addEventListener('click', function() {
     projectTitleButtons[i].addEventListener('click', toggleList);
   }
 
+  taskItemCheckboxes = document.getElementsByClassName('taskItemCheckbox');
+  console.log({taskItemCheckboxes});
   deleteTaskButtons = document.getElementsByClassName('deleteTaskBtn');
-  editTaskButtons = document.getElementsByClassName('editTaskBtn'); 
+  editTaskButtons = document.getElementsByClassName('editTaskBtn');
+  refreshTaskChkBoxes(); 
   refreshEditDelTaskBtns();
 })
 
@@ -169,42 +177,26 @@ function toggleList() {
 function completeTask() {
   if (this.checked == true) {
     this.parentElement.classList.add('taskItemCross');
-    console.log(this.parentElement.classList[1]);
-    let projectTitle = this.parentElement.classList[1];
-    for (var i = 0; i < storage.projects.length; i++) {
-      if (storage.projects[i].title == projectTitle) {
-        for (var j = 0; j < storage.projects[i].tasks.length; j++) {
-          storage.projects[i].tasks[j].isCompleted = true;
-          console.log(storage.projects[i].tasks[j].title, storage.projects[i].tasks[j].isCompleted);
-          break;
-        }
-        break;
-      }
-    }
+
+    let projectTitle = this.parentElement.dataset.project;
+    let taskIdx = this.parentElement.dataset.taskidx;
+    let projectIdx = findProjectIndex(projectTitle);
+    console.log(projectTitle, projectIdx);
+
+    storage.projects[projectIdx].tasks[taskIdx].isCompleted = true; 
   }
   else {
     this.parentElement.classList.remove('taskItemCross');
-    console.log(this.parentElement.classList[1]);
-    let projectTitle = this.parentElement.classList[1];
-    for (var i = 0; i < storage.projects.length; i++) {
-      if (storage.projects[i].title == projectTitle) {
-        for (var j = 0; j < storage.projects[i].tasks.length; j++) {
-          storage.projects[i].tasks[j].isCompleted = false;
-          console.log(storage.projects[i].tasks[j].title, storage.projects[i].tasks[j].isCompleted);
-          break;
-        }
-        break;
-      }
-    }
+
+    let projectTitle = this.parentElement.dataset.project;
+    let taskIdx = this.parentElement.dataset.taskidx;
+    let projectIdx = findProjectIndex(projectTitle);
+    console.log(projectTitle, projectIdx);
+
+    storage.projects[projectIdx].tasks[taskIdx].isCompleted = false;
   } 
 
   save();
-}
-
-let taskItemCheckboxes = document.getElementsByClassName('taskItemCheckbox');
-
-for (var i = 0; i < taskItemCheckboxes.length; i++) {
-  taskItemCheckboxes[i].addEventListener('click', completeTask);
 }
 
 let colorButtons = colorSelectionWrapper.querySelectorAll('.colorBtn');
@@ -387,6 +379,12 @@ function refreshEditDelTaskBtns() {
       var todayDate = new Date(this.parentElement.dataset.duedate).toISOString().slice(0, 10);
       dueDate.value = todayDate;
     })
+  }
+}
+
+function refreshTaskChkBoxes() {
+  for (var i = 0; i < taskItemCheckboxes.length; i++) {
+    taskItemCheckboxes[i].addEventListener('click', completeTask);
   }
 }
 
