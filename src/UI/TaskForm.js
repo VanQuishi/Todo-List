@@ -1,4 +1,4 @@
-const TaskForm = document.createElement('div');
+const TaskForm = document.createElement("div");
 TaskForm.id = "taskFormWrapper";
 
 TaskForm.innerHTML = `

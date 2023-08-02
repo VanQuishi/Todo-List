@@ -1,24 +1,22 @@
 import githubLogo from "../assets/github-mark/github-mark-white.svg";
 import addIcon from "../assets/add_icon.svg";
 
-const layout = document.createElement('div');
-
+const layout = document.createElement("div");
 
 /* Header section */
-const header = document.createElement('div');
+const header = document.createElement("div");
 header.id = "header";
-const logoWrapper = document.createElement('div');
-const title = document.createElement('h1');
+const logoWrapper = document.createElement("div");
+const title = document.createElement("h1");
 title.textContent = "Planner";
 logoWrapper.appendChild(title);
 header.appendChild(logoWrapper);
 
-
 /* Main section */
-const main = document.createElement('div');
+const main = document.createElement("div");
 main.id = "main";
 
-const nav = document.createElement('div');
+const nav = document.createElement("div");
 nav.id = "nav";
 
 nav.innerHTML = `
@@ -55,17 +53,17 @@ nav.innerHTML = `
     <ul id="projectList">
     </ul>
   </div>
-`
+`;
 
 main.appendChild(nav);
 
-const viewWrapper = document.createElement('div');
+const viewWrapper = document.createElement("div");
 viewWrapper.id = "viewWrapper";
 
-const view = document.createElement('div');
-view.id = 'view';
+const view = document.createElement("div");
+view.id = "view";
 
-const addTaskWrapper = document.createElement('div');
+const addTaskWrapper = document.createElement("div");
 addTaskWrapper.id = "addTaskWrapper";
 addTaskWrapper.innerHTML = `
   <button class="blueBtn" id="addTaskBtn">New Task</button>
@@ -75,13 +73,12 @@ viewWrapper.appendChild(view);
 viewWrapper.appendChild(addTaskWrapper);
 main.appendChild(viewWrapper);
 
-
 /* Footer section */
-const footer = document.createElement('div');
+const footer = document.createElement("div");
 footer.id = "footer";
-const creditWrapper = document.createElement('p');
+const creditWrapper = document.createElement("p");
 creditWrapper.textContent = "Made by Nin";
-const githubWrapper = document.createElement('img');
+const githubWrapper = document.createElement("img");
 githubWrapper.src = githubLogo;
 footer.appendChild(creditWrapper);
 footer.appendChild(githubWrapper);

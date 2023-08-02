@@ -8,20 +8,12 @@ export default class LocalStorage {
     this.loadProjects();
   }
 
-  set projects(_projects) {
-    this.projects = _projects;
-  }
-
-  get projects() {
-    return this.projects;
-  }
-
   addProject(_project) {
     for (let i = 0; i < this.projects.length; i++) {
       if (this.projects[i].title == _project.title) {
         return false;
       }
-    } 
+    }
 
     this.projects.push(_project);
     return true;
@@ -40,26 +32,33 @@ export default class LocalStorage {
   }
 
   saveProjects() {
-    localStorage.setItem('myLocalProjects', JSON.stringify(this.projects));
-    console.log("after save", localStorage.getItem('myLocalProjects'));
+    localStorage.setItem("myLocalProjects", JSON.stringify(this.projects));
+    console.log("after save", localStorage.getItem("myLocalProjects"));
   }
 
   loadProjects() {
     console.log("called loadProjects");
-    if (localStorage.getItem('myLocalProjects')) {
-      var existingProjects = JSON.parse(localStorage.getItem('myLocalProjects'));
-      console.log({existingProjects});
+    if (localStorage.getItem("myLocalProjects")) {
+      var existingProjects = JSON.parse(
+        localStorage.getItem("myLocalProjects"),
+      );
+      console.log({ existingProjects });
 
       var _projects = [];
-      existingProjects.forEach(function(item) {
+      existingProjects.forEach(function (item) {
         let tasks = [];
-        for (var i = 0; i < item['tasks'].length; i++) {
-          let dueDate = new Date(item['tasks'][i]['dueDateAndTime']);
-          let task = new Task(item['tasks'][i]['title'], item['tasks'][i]['description'], dueDate, item['tasks'][i]['isCompleted']);
+        for (var i = 0; i < item["tasks"].length; i++) {
+          let dueDate = new Date(item["tasks"][i]["dueDateAndTime"]);
+          let task = new Task(
+            item["tasks"][i]["title"],
+            item["tasks"][i]["description"],
+            dueDate,
+            item["tasks"][i]["isCompleted"],
+          );
           tasks.push(task);
         }
-        console.log('tasks', tasks);
-        let project = new Project(item['title'], item['color'], tasks);
+        console.log("tasks", tasks);
+        let project = new Project(item["title"], item["color"], tasks);
         _projects.push(project);
       });
 

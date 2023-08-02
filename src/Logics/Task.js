@@ -9,36 +9,4 @@ export default class Task {
     this.dueDateAndTime = _dueDateAndTime;
     this.isCompleted = _isCompleted;
   }
-
-  set title(_title) {
-    this.title = _title;
-  }
-
-  get title() {
-    return this.title;
-  }
-
-  set description(_description) {
-    this.description = _description;
-  }
-
-  get description() {
-    return this.description;
-  }
-  
-  set dueDateAndTime(_dueDateAndTime) {
-    this.dueDateAndTime = _dueDateAndTime;
-  }
-
-  get dueDateAndTime() {
-    return this.dueDateAndTime;
-  }
-  
-  set isCompleted(_isCompleted) {
-    this.isCompleted = _isCompleted;
-  }
-
-  get isCompleted() {
-    return this.isCompleted;
-  }
 }

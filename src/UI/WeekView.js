@@ -4,11 +4,11 @@ import deleteIcon from "../assets/delete_icon.svg";
 export default class WeekView {
   htmlDisplay;
   constructor(weekBegin, weekEnd, weekList) {
-    let weekWrapper = document.createElement('div');
-    weekWrapper.className = 'viewChild';
+    let weekWrapper = document.createElement("div");
+    weekWrapper.className = "viewChild";
 
-    let taskItems = ""
-    weekList.forEach(item => {     
+    let taskItems = "";
+    weekList.forEach((item) => {
       taskItems += this.createTaskItem(item[0], item[1], item[2], item[3]);
     });
 
@@ -39,9 +39,8 @@ export default class WeekView {
               <img src="${deleteIcon}">
             </div>
         </li>
-      `
-    }
-    else {
+      `;
+    } else {
       taskItemHTML = `
         <li class="taskItem ${projectTitle} taskItemToday" style="background-color:${projectColor}" data-project="${projectTitle}" data-tasktitle="${task.title}" data-desc="${task.description}" data-duedate="${task.dueDateAndTime}" data-prjname="${projectTitle}" data-taskidx="${idx}">
             <input type="checkbox" class="taskItemCheckbox">
@@ -53,9 +52,9 @@ export default class WeekView {
               <img src="${deleteIcon}">
             </div>
         </li>
-      `
+      `;
     }
-    
+
     return taskItemHTML;
-  }
+  };
 }

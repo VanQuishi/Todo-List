@@ -8,41 +8,16 @@ export default class Project {
     this.tasks = sortTasksAsc(_tasks);
   }
 
-  set title(_title) {
-    console.log("called setter");
-    this.title = _title;
-  }
-
-  get title() {
-    return this.title;
-  }
-
-  set color(_color) {
-    this.color = _color;
-  }
-
-  get color() {
-    return this.color;
-  }
-
-  set tasks(_tasks) {
-    this.tasks = sortTasksAsc(_tasks);
-  }
-
-  get tasks() {
-    return this.tasks;
-  }
-
   addTask = (_task) => {
     this.tasks.push(_task);
     this.tasks = sortTasksAsc(this.tasks);
-  }
+  };
 
   removeTask = (_taskIdx) => {
     this.tasks.splice(_taskIdx, 1);
     this.tasks = sortTasksAsc(this.tasks);
     return;
-  }
+  };
 }
 
 function sortTasksAsc(_tasks) {

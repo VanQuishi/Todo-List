@@ -4,12 +4,12 @@ import deleteIcon from "../assets/delete_icon.svg";
 export default class TodayView {
   htmlDisplay;
   constructor(todayDate, todayList) {
-    console.log('called constructor TodayView');
-    let todayWrapper = document.createElement('div');
-    todayWrapper.className = 'viewChild';
+    console.log("called constructor TodayView");
+    let todayWrapper = document.createElement("div");
+    todayWrapper.className = "viewChild";
 
-    let taskItems = ""
-    todayList.forEach(item => {     
+    let taskItems = "";
+    todayList.forEach((item) => {
       taskItems += this.createTaskItem(item[0], item[1], item[2], item[3]);
     });
 
@@ -40,9 +40,8 @@ export default class TodayView {
               <img src="${deleteIcon}">
             </div>
         </li>
-      `
-    }
-    else {
+      `;
+    } else {
       taskItemHTML = `
         <li class="taskItem ${projectTitle} taskItemToday" style="background-color:${projectColor}" data-project="${projectTitle}" data-tasktitle="${task.title}" data-desc="${task.description}" data-duedate="${task.dueDateAndTime}" data-prjname="${projectTitle}" data-taskidx="${idx}">
             <input type="checkbox" class="taskItemCheckbox">
@@ -54,9 +53,9 @@ export default class TodayView {
               <img src="${deleteIcon}">
             </div>
         </li>
-      `
+      `;
     }
-    
+
     return taskItemHTML;
-  }
+  };
 }
